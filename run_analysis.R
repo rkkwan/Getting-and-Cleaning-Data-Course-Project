@@ -31,6 +31,14 @@ train <- cbind(y_train, subject_train, x_train)
 test <- cbind(y_test, subject_test, x_test)
 data <- rbind(train, test)
 
+names(data)<-gsub("^t", "time", names(data))
+names(data)<-gsub("^f", "frequency", names(data))
+names(data)<-gsub("Acc", "Accelerometer", names(data))
+names(data)<-gsub("Gyro", "Gyroscope", names(data))
+names(data)<-gsub("Mag", "Magnitude", names(data))
+names(data)<-gsub("BodyBody", "Body", names(data))
+names(data)<-gsub("\\()", "", names(data))
+
 #extract the measurements on the mean and standard deviation for each measurement
 #read col names
 dataColNames <- colnames(data)
