@@ -45,7 +45,8 @@ meanAndStdData <- data[, meanAndStd == TRUE]
 dataWithActivityLabels <- merge(activity_labels, meanAndStdData, by="ActivityID", all.x = TRUE)
 
 #create tidy data set with the average of each variable for each activity and each subject
-meanData <- aggregate(. ~SubjectID + ActivityID, dataWithActivityLabels, mean)
+meanData <- aggregate(. ~SubjectID + ActivityID + Activity, dataWithActivityLabels, mean)
+#sort by subject ID and then by activity ID
 meanData <- meanData[order(meanData$SubjectID, meanData$ActivityID), ]
 
 #write tidy data set to a text file
